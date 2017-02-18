@@ -3,9 +3,12 @@ package com.example.student.db021804;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -16,6 +19,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
+
+    }
+    public void clickSave(View v)
+    {
         File p = getFilesDir();
         Log.d("FILE", p.toString());
         File f = new File(p.toString() + File.separator + "a1.txt");
@@ -29,7 +38,21 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
+    }
+    public void clickLoad(View v)
+    {
+        File p = getFilesDir();
+        Log.d("FILE", p.toString());
+        File f = new File(p.toString() + File.separator + "a1.txt");
+        try {
+            FileReader fr = new FileReader(f);
+            BufferedReader br = new BufferedReader(fr);
+            String s = br.readLine();
+            Log.d("FILE", s);
+            br.close();
+            fr.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
